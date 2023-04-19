@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color-h: 237;
+  --primary-color-s: 59%;
+  --primary-color-l: 51%;
+  --secondary-color-h: 253;
+  --secondary-color-s: 76%;
+  --secondary-color-l: 54%;
+  --primary-color: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    var(--primary-color-l)
+  );
+  --secondary-color: hsl(
+    var(--secondary-color-h),
+    var(--secondary-color-s),
+    var(--secondary-color-l)
+  );
+  --gradient-second-color: #8330D9;
+  --color-saturation-delta: 10%;
+  --color-lightness-delta: 10%;
+  --primary-color-more-s1: hsl(
+    var(--primary-color-h),
+    calc(var(--primary-color-s) + var(--color-saturation-delta)),
+    var(--primary-color-l)
+  );
+  --primary-color-less-l2: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    calc(var(--primary-color-l) - 2 * var(--color-lightness-delta))
+  );
+}
+
+body {
+  font-family:'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+.title {
+  padding: 1rem;
+  font-size: min(10vw, 3rem);
+  width: fit-content;
+  background: linear-gradient(to right, var(--primary-color), var(--gradient-second-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.controller {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.controller h2 {
+  margin-right: 1rem;
+  font-size: min(5vw, 1.5rem);
+}
+
+#canvas1 {
+  width: 100%;
+  height: 70vw;
+  display: block;
+}
+
+footer {
+  margin-top: 1rem;
+}
+
+.toggle {
+  width: 0px;
+  height: 0px;
+  visibility: hidden;
+}
+
+.toggle + label {
+  cursor: pointer;
+  position: relative;
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #ccc;
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, .5), inset 0px -2px 8px rgba(255, 255, 255, .3);
+  transition-duration: 500ms;
+}
+
+.toggle + label::after {
+  width: 20px;
+  height: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background-color: #ee6;
+  content: "";
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+  transition-duration: 500ms;
+}
+
+.toggle:checked + label {
+  background-color: #555;
+}
+
+.toggle:checked + label::after {
+  background-color: #66e;
+  transform: translateX(24px);
+}
+
+.toggle + label img {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  transition-duration: 500ms;
+}
+
+.toggle:checked + label img.sun {
+  transform: translateX(24px);
+  opacity: 0;
+}
+
+.toggle + label img.moon {
+  opacity: 0;
+}
+
+.toggle:checked + label img.moon {
+  transform: translateX(24px);
+  opacity: 1;
+}
+
+#canvas1 {
+  z-index: -1;
+}
